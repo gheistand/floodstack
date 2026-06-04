@@ -4,7 +4,7 @@
 
 FloodStack is a Python orchestration framework that chains physics-based hydraulic simulation with consequence estimation to produce end-to-end flood risk quantification — at any scale, for any purpose.
 
-> Built on [TRITON](https://triton.ornl.gov) (ORNL) · [RAS Agent](https://github.com/Reep-Works/ras-agent) (Reep Works) · [SPHERE](https://github.com/Niyam-Projects/sphere) (Niyam Projects)
+> Built on [TRITON](https://triton.ornl.gov) (ORNL) · [RAS Agent](https://github.com/Reep-Works/ras-agent) (Reep Works) · [inland-consequences](https://github.com/fema-ffrd/inland-consequences) (FEMA FFRD)
 
 ---
 
@@ -113,7 +113,7 @@ floodstack/
 |---|---|---|---|
 | [TRITON v2](https://triton.ornl.gov) | Oak Ridge National Laboratory | Open source | GPU-accelerated 2D hydraulics |
 | [RAS Agent](https://github.com/Reep-Works/ras-agent) | Reep Works | Apache 2.0 | HEC-RAS automation (regulatory) |
-| [SPHERE](https://github.com/Niyam-Projects/sphere) | Niyam Projects | Apache 2.0 | HAZUS flood consequence estimation |
+| [inland-consequences](https://github.com/fema-ffrd/inland-consequences) | FEMA FFRD | Open source | HAZUS flood consequence estimation (unified coastal + inland) |
 
 ---
 

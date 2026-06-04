@@ -1,11 +1,21 @@
 """
-SPHEREEngine — adapter for SPHERE (HAZUS flood consequence estimation).
+InlandConsequencesEngine — adapter for fema-ffrd/inland-consequences.
 
-SPHERE: https://github.com/Niyam-Projects/sphere
-By Troy Schmidt, Niyam Projects
+Repo: https://github.com/fema-ffrd/inland-consequences
+Docs: https://fema-ffrd.github.io/inland-consequences/
 
-SPHERE runs the FEMA HAZUS flood loss methodology on modern infrastructure:
-GeoParquet + DuckDB instead of the legacy HAZUS desktop application.
+Note on naming:
+  SPHERE (github.com/Niyam-Projects/sphere) is the contractor/proprietary
+  implementation built by Troy Schmidt at Niyam Projects. It implements the
+  same HAZUS flood loss methodology.
+
+  inland-consequences is the open-source FEMA FFRD release — the one
+  FloodStack integrates. Troy's deep knowledge of SPHERE informs this
+  integration and makes him the ideal collaboration contact.
+
+inland-consequences runs the FEMA HAZUS flood loss methodology using
+modern infrastructure: Python + DuckDB. Supports both coastal and inland
+(riverine/pluvial) consequence modeling.
 
 Use for:
   - Structure-level damage estimation from depth grids
@@ -18,23 +28,20 @@ from .base import ConsequenceEngine
 from ..io.depth_grid import DepthGridSet
 
 
-class SPHEREEngine(ConsequenceEngine):
+class InlandConsequencesEngine(ConsequenceEngine):
     """
-    Adapter for SPHERE consequence estimation.
+    Adapter for fema-ffrd/inland-consequences.
 
     Args:
-        sphere_path:   Path to SPHERE installation. Defaults to Python environment.
         depth_damage:  Depth-damage function set. Default 'hazus_fema'.
         occupancy:     Occupancy classification schema. Default 'hazus'.
     """
 
     def __init__(
         self,
-        sphere_path: str = None,
         depth_damage: str = "hazus_fema",
         occupancy: str = "hazus",
     ):
-        self.sphere_path = sphere_path
         self.depth_damage = depth_damage
         self.occupancy = occupancy
 
@@ -47,7 +54,7 @@ class SPHEREEngine(ConsequenceEngine):
             structures:  Path to structure inventory
                          - NSI (National Structure Inventory) GeoJSON or GeoParquet
                          - Custom structure layer with required fields
-            **kwargs:    Additional SPHERE options
+            **kwargs:    Additional inland-consequences options
 
         Returns:
             ConsequenceResult with:
@@ -58,12 +65,18 @@ class SPHEREEngine(ConsequenceEngine):
 
         TODO: implement adapter
         - Sample depth grids at structure locations (point extraction)
-        - Pass depth values + structure inventory to SPHERE
-        - Parse SPHERE output (GeoParquet / DuckDB results)
+        - Pass depth values + structure inventory to inland-consequences
+        - Parse output (DuckDB results)
         - Return as ConsequenceResult
         """
         raise NotImplementedError(
-            "SPHEREEngine adapter not yet implemented. "
+            "InlandConsequencesEngine adapter not yet implemented. "
             "See docs/architecture.md for the integration spec. "
-            "Collaboration with Troy Schmidt (troy@niyamprojects.com) planned."
+            "Target: github.com/fema-ffrd/inland-consequences. "
+            "Collaboration with Troy Schmidt (Niyam Projects) planned — "
+            "his SPHERE knowledge directly informs this integration."
         )
+
+
+# Alias for backward compatibility and discoverability
+SPHEREEngine = InlandConsequencesEngine
