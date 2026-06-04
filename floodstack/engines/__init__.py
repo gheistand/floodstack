@@ -13,13 +13,12 @@ Available engines:
 from .base import HydraulicEngine, ConsequenceEngine
 from .triton import TRITONEngine
 from .hec_ras import RASAgentEngine
-from .sphere import InlandConsequencesEngine, SPHEREEngine  # SPHEREEngine is alias
+from .sphere import SPHEREEngine
 
 __all__ = [
     "HydraulicEngine",
     "ConsequenceEngine",
     "TRITONEngine",
     "RASAgentEngine",
-    "InlandConsequencesEngine",
-    "SPHEREEngine",  # alias
+    "SPHEREEngine",
 ]
