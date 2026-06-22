@@ -41,8 +41,8 @@ sphere = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/Reep-Works/floodstack"
-Repository = "https://github.com/Reep-Works/floodstack"
+Homepage = "https://github.com/gheistand/floodstack"
+Repository = "https://github.com/gheistand/floodstack"
 "Reep Works" = "https://reepworks.com"
 
 [tool.ruff]

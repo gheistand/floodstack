@@ -1,7 +1,7 @@
 """
 RASAgentEngine — adapter for HEC-RAS via RAS Agent.
 
-RAS Agent: https://github.com/Reep-Works/ras-agent
+RAS Agent: https://github.com/gheistand/ras-agent
 HEC-RAS: US Army Corps of Engineers hydraulic model (FEMA-accepted)
 
 Use for:

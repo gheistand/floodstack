@@ -5,7 +5,7 @@
 
 - [x] README and vision
 - [x] Architecture document
-- [ ] GitHub repo (reepworks/floodstack)
+- [ ] GitHub repo (gheistand/floodstack)
 - [ ] Apache 2.0 license
 - [ ] Stub package structure with interfaces defined
 - [ ] Common DepthGrid data model

@@ -62,9 +62,24 @@ class DepthGrid:
         except ImportError:
             raise ImportError("rasterio required for GeoTIFF import: pip install rasterio")
 
+        import warnings
+
         with rasterio.open(path) as src:
+            # rasterio's Cython reader can set .shape on the returned ndarray,
+            # which NumPy>=2.5 flags with a DeprecationWarning. The behavior is
+            # internal to rasterio and harmless here; suppress only that exact
+            # warning (narrowly scoped) rather than silencing anything broader.
+            with warnings.catch_warnings():
+                warnings.filterwarnings(
+                    "ignore",
+                    message="Setting the shape on a NumPy array",
+                    category=DeprecationWarning,
+                )
+                band = src.read(1)
+            # Detach from rasterio's internal buffer into a clean float32 array.
+            raster = np.array(band, dtype=np.float32, copy=True)
             return cls(
-                raster=src.read(1).astype(np.float32),
+                raster=raster,
                 crs=str(src.crs),
                 transform=src.transform,
                 scenario_id=scenario_id,
